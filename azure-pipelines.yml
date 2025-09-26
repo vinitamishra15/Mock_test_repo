@@ -1,11 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
-trigger:
-#- main
-
 pool: WindowsPool
 
 stages:
@@ -16,7 +8,7 @@ stages:
           - task: ServiceNow-CICD-App-Install@2
             name: CICDInstall
             inputs:
-              connectedServiceName: snow_conn
+              connectedServiceName: snow_CICD
               scope: global
               sysId: 97ac9b1047641210acd2a22f316d432f
               autoUpgradeBaseApp: true
