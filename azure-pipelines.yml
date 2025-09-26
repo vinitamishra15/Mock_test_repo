@@ -4,16 +4,20 @@
 # https://aka.ms/yaml
 
 trigger:
-- main
+#- main
 
-pool:
-  vmImage: ubuntu-latest
+pool: WindowsPool
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+  - stage: Deploy
+    jobs:
+      - job: DeployJob
+        steps:
+          - task: ServiceNow-CICD-App-Install@2
+            name: CICDInstall
+            inputs:
+              connectedServiceName: snow_conn
+              scope: global
+              sysId: 97ac9b1047641210acd2a22f316d432f
+              autoUpgradeBaseApp: true
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
